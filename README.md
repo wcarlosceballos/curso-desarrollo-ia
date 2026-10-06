@@ -1,6 +1,6 @@
 # 🎓 Curso: Desarrollo con IA — El Nuevo Programador
 
-Experiencia pedagógica **por competencias**, construida con el mismo curso descargado y aprendido por María Villadiego Díaz.
+Experiencia pedagógica **por competencias**.
 
 ## 🎯 Objetivo
 
