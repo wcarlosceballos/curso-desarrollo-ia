@@ -7,14 +7,32 @@
 <a href="leccion3.html">📘 Día 3</a>
 <a href="evaluacion.html">📝 Evaluación</a>
 </aside>
-<div class="main">
-<header><h1>📝 Evaluación</h1></header><main><h2>📝 Banco de Preguntas — Evaluación</h2>
-<h3>Día 1 — Fundamentos</h3>
-<p>1. ¿Qué es un LLM y cómo genera respuestas? 2. Nombra 3 fundamentos clave de los LLM y explícalos. 3. ¿Qué es una alucinación y por qué es el mayor defecto? 4. Explica la regla Potencia ↔ Velocidad ↔ Coste. 5. Escribe las 5 partes de un prompt clásico con un ejemplo.</p>
-<h3>Día 2 — Harness y SDD</h3>
-<p>1. Diferencia entre custom command y Agent Skill. 2. ¿Qué es MCP y para qué sirve? Nombra 2 MCPs. 3. Explica la diferencia Spec-first / Spec-anchored / Spec-as-source. 4. ¿Qué es EARS y por qué funciona bien con IA? 5. Enumera los 7 pasos de SDD.</p>
-<h3>Día 3 — Multiagentes</h3>
-<p>1. Diferencia entre custom agent y subagente. 2. ¿Cuáles son los agentes por defecto de OpenCode? 3. Dibuja el flujo multiagente y describe cada rol. 4. ¿Por qué los permisos por agente son importantes? 5. ¿Qué debe hacer el coordinador antes de llamar a un subagente?</p>
-<h3>Quiz (opciones múltiples)</h3>
-<p>1. Un LLM... <b>a)</b> piensa como persona <b>b)</b> predice el siguiente token <b>c)</b> busca en internet → <i>b</i> 2. ¿Qué MCP prueba tu web en navegador? <b>a)</b> Figma <b>b)</b> Chrome DevTools <b>c)</b> Supabase → <i>b</i> 3. Tipo de SDD recomendado: <b>a)</b> spec-first <b>b)</b> spec-anchored <b>c)</b> spec-as-source → <i>b</i></p></main>
-<footer>OVA educativo — Carlos Ceballos · 2026</footer></div></body></html>
+<div class="main"><header><h1>📝 Evaluación</h1></header><main>
+<div class="card"><h3>1. ¿Qué es un LLM?</h3>
+<button data-ok="1" onclick="resp(this)">Predice el siguiente token por probabilidad</button>
+<button onclick="resp(this)">Piensa como una persona</button></div>
+
+<div class="card"><h3>2. ¿Qué MCP prueba tu web en el navegador?</h3>
+<button onclick="resp(this)">Figma</button>
+<button data-ok="1" onclick="resp(this)">Chrome DevTools</button></div>
+
+<div class="card"><h3>3. ¿Tipo de SDD recomendado?</h3>
+<button onclick="resp(this)">Spec-first</button>
+<button data-ok="1" onclick="resp(this)">Spec-anchored</button></div>
+
+<div class="card"><h3>4. ¿Qué hace el subagente en SDD?</h3>
+<button data-ok="1" onclick="resp(this)">Recibe contexto del coordinador y devuelve resultado</button>
+<button onclick="resp(this)">Habla directo con el usuario</button></div>
+
+<p id="res"></p>
+</main><footer>OVA educativo — Carlos Ceballos · 2026</footer></div>
+<script>
+let score=0;
+function resp(btn){
+  const correct = btn.hasAttribute('data-ok');
+  document.getElementById('res').textContent = correct ? '✅ ¡Correcto!' : '❌ Intenta de nuevo';
+  if(correct && !btn.dataset.done){ score++; btn.dataset.done='1'; }
+  document.getElementById('res').textContent += ' — Puntaje: '+score+'/4';
+}
+</script>
+</body></html>
