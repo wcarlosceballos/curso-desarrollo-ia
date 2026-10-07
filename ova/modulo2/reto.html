@@ -1,0 +1,23 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>🏆 Reto Módulo 2</title>
+<link rel="stylesheet" href="../css/style.css"></head><body>
+<aside class="sidebar"><h2>🤖 Desarrollo con IA</h2><a href="../index.html">🏠 Inicio</a><a href="index.html">📘 Módulo 2</a></aside>
+<div class="main"><header><h1>🏆 Reto del Módulo 2</h1></header><main>
+<h2>🎯 Misión</h2><p>Construye una mini especificación completa y descárgala.</p>
+<div class="card">
+<h4>spec.md</h4><textarea id="spec" rows="5" style="width:100%"></textarea>
+<h4>plan.md</h4><textarea id="plan" rows="5" style="width:100%"></textarea>
+<h4>tasks.md</h4><textarea id="tasks" rows="5" style="width:100%"></textarea>
+<button class="btn" onclick="guardar()">Guardar y descargar</button>
+<p id="fb"></p>
+</div>
+</main><footer>OVA educativo — Carlos Ceballos · 2026</footer></div>
+<script src="../js/storage.js"></script>
+<script>
+function guardar(){
+  const s=spec.value+'\n'+plan.value+'\n'+tasks.value;
+  saveProgress(Object.assign(getProgress(),{reto2:s}));
+  const a=document.createElement('a'); a.href='data:text/plain;charset=utf-8,'+encodeURIComponent(s); a.download='reto2.md'; a.click();
+  document.getElementById('fb').innerHTML='✅ Evidencia guardada y descargada.';
+}
+</script>
+</body></html>
