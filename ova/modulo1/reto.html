@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>🏆 Reto Módulo 1</title>
+<link rel="stylesheet" href="../css/style.css"></head><body>
+<aside class="sidebar"><h2>🤖 Desarrollo con IA</h2><a href="../index.html">🏠 Inicio</a><a href="../diagnostico.html">🩺 Diagnóstico</a><a href="index.html">📘 Módulo 1</a></aside>
+<div class="main"><header><h1>🏆 Reto del Módulo 1</h1></header><main>
+<h2>🎯 Misión</h2><p>Crea un prompt profesional para resolver un problema real de desarrollo de software.</p>
+<div class="card">
+<p><b>Problema de ejemplo:</b> necesitas una función que valide fechas en JavaScript sin usar librerías externas.</p>
+<label>Tu prompt:<br><textarea id="prompt" rows="6" style="width:100%"></textarea></label>
+<button class="btn" onclick="guardar()">Guardar evidencia</button>
+<p id="fb"></p>
+</div>
+</main><footer>OVA educativo — Carlos Ceballos · 2026</footer></div>
+<script src="../js/storage.js"></script>
+<script>
+function guardar(){
+  const v = document.getElementById('prompt').value.trim();
+  if(v.length<20){ document.getElementById('fb').innerHTML='⚠️ Describe mejor tu prompt (falta detalle).'; return; }
+  saveProgress(Object.assign(getProgress(),{reto1:v}));
+  document.getElementById('fb').innerHTML='✅ Evidencia guardada en tu portafolio.';
+}
+</script>
+</body></html>
