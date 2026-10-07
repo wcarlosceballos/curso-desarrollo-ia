@@ -1,0 +1,29 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>📂 Mi portafolio</title>
+<link rel="stylesheet" href="css/style.css"></head>
+<body><aside class="sidebar"><h2>🤖 Desarrollo con IA</h2>
+<a href="index.html">🏠 Inicio</a><a href="evaluacion.html">📝 Evaluación</a><a href="portafolio.html">📂 Portafolio</a><a href="resultados.html">📊 Resultados</a></aside>
+<div class="main"><header><h1>📂 Mi portafolio de evidencias</h1></header><main>
+<div class="card" id="evidencias"></div>
+<button class="btn" onclick="descargar()">⬇️ Descargar portafolio (.md)</button>
+</main><footer>OVA educativo — Carlos Ceballos · 2026</footer></div>
+<script src="js/storage.js"></script>
+<script>
+const p = getProgress();
+let html = '<h3>Evidencias guardadas</h3>';
+html += p.reto1 ? '<p>✅ Prompt del reto (Módulo 1)</p>' : '<p>⬜ Prompt del reto (Módulo 1) — pendiente</p>';
+html += p.reto2 ? '<p>✅ Spec del reto (Módulo 2)</p>' : '<p>⬜ Spec del reto (Módulo 2) — pendiente</p>';
+html += p.reto3 ? '<p>✅ Arquitectura del reto (Módulo 3)</p>' : '<p>⬜ Arquitectura del reto (Módulo 3) — pendiente</p>';
+html += p.diagnostico ? `<p>✅ Diagnóstico: nivel ${p.diagnostico}</p>` : '<p>⬜ Diagnóstico — pendiente</p>';
+html += p.promptScore ? `<p>✅ Constructor de prompts: ${p.promptScore}/100</p>` : '';
+document.getElementById('evidencias').innerHTML = html;
+function descargar(){
+  const p = getProgress();
+  let t = '# Portafolio de evidencias\n\n';
+  t += '## Diagnóstico\n'+(p.diagnostico||'sin datos')+'\n\n';
+  t += '## Prompt del reto 1\n'+(p.reto1||'sin datos')+'\n\n';
+  t += '## Spec del reto 2\n'+(p.reto2||'sin datos')+'\n\n';
+  t += '## Arquitectura del reto 3\n'+(p.reto3||'sin datos')+'\n';
+  const a=document.createElement('a');a.href='data:text/markdown;charset=utf-8,'+encodeURIComponent(t);a.download='portafolio.md';a.click();
+}
+</script>
+</body></html>

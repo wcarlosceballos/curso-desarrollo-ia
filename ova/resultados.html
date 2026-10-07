@@ -1,0 +1,30 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>📊 Resultados</title>
+<link rel="stylesheet" href="css/style.css"></head>
+<body><aside class="sidebar"><h2>🤖 Desarrollo con IA</h2>
+<a href="index.html">🏠 Inicio</a><a href="evaluacion.html">📝 Evaluación</a><a href="portafolio.html">📂 Portafolio</a><a href="resultados.html">📊 Resultados</a></aside>
+<div class="main"><header><h1>📊 Resultados y gamificación</h1></header><main>
+<div class="card"><h3>Progreso</h3><p id="prog"></p></div>
+<div class="card"><h3>🏅 Insignias desbloqueadas</h3><div id="badges"></div></div>
+<div class="card"><h3>🤔 Reflexión metacognitiva</h3>
+<label>¿Qué aprendí?<br><textarea id="r1" rows="3" style="width:100%"></textarea></label><br>
+<label>¿Qué fue difícil?<br><textarea id="r2" rows="3" style="width:100%"></textarea></label><br>
+<label>¿Qué cambiaría en mi forma de desarrollar software?<br><textarea id="r3" rows="3" style="width:100%"></textarea></label><br>
+<button class="btn" onclick="guardar()">Guardar reflexión</button><p id="fb"></p></div>
+</main><footer>OVA educativo — Carlos Ceballos · 2026</footer></div>
+<script src="js/storage.js"></script>
+<script>
+const p = getProgress();
+document.getElementById('prog').innerHTML = `Tu progreso: <b>${getProgressPercent()}%</b>`;
+const b=[];
+if(p.modulo1) b.push('🏅 Director de IA');
+if(p.modulo2) b.push('🏅 Arquitecto SDD');
+if(p.modulo3) b.push('🏅 Coordinador Multiagente');
+if(p.modulo1&&p.modulo2&&p.modulo3&&p.diagnostico) b.push('🏆 Desarrollador aumentado por IA');
+document.getElementById('badges').innerHTML = b.length? b.map(x=>`<p>${x}</p>`).join('') : '<p>Aún no has desbloqueado insignias.</p>';
+if(p.reflexion){ r1.value=p.reflexion[0]; r2.value=p.reflexion[1]; r3.value=p.reflexion[2]; }
+function guardar(){
+  saveProgress(Object.assign(getProgress(),{reflexion:[r1.value,r2.value,r3.value]}));
+  document.getElementById('fb').textContent='✅ Reflexión guardada.';
+}
+</script>
+</body></html>
