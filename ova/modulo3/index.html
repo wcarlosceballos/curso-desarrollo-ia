@@ -1,6 +1,65 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><link rel="stylesheet" href="../css/style.css"></head><body>
-<aside class="sidebar"><h2>🤖 Desarrollo con IA</h2><a href="../index.html">🏠 Inicio</a><a href="../diagnostico.html">🩺 Diagnóstico</a><a href="../modulo3/index.html">📘 modulo3</a></aside>
-<div class="main"><header><h1>📘 modulo3</h1></header><main>
-<div class="card"><p>Módulo en construcción — la siguiente entrega lo completa con sus actividades.</p>
-<a class="btn" href="../index.html">Volver al inicio</a></div>
-</main><footer>OVA educativo — Carlos Ceballos · 2026</footer></div></body></html>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>📘 Módulo 3 — Multiagentes</title>
+<link rel="stylesheet" href="../css/style.css"></head>
+<body><aside class="sidebar"><h2>🤖 Desarrollo con IA</h2>
+<a href="../index.html">🏠 Inicio</a><a href="../diagnostico.html">🩺 Diagnóstico</a><a href="../modulo1/index.html">📘 M1</a><a href="../modulo2/index.html">📗 M2</a><a href="../modulo3/index.html">📘 M3</a></aside>
+<div class="main"><header><h1>📘 Módulo 3 — Coordinar agentes</h1></header><main>
+
+<h2>🎯 Competencia</h2><p>Coordina sistemas multiagentes con permisos y flujo SDD.</p>
+
+<h2>🎭 Actividad 1 — ¿Quién hace qué?</h2>
+<div class="card"><p>Asigna cada responsabilidad al agente correcto:</p>
+<select id="r1"> <option>COORDINADOR</option><option>PLANIFICADOR</option><option>IMPLEMENTADOR</option><option>REVISOR</option></select> Diseña la solución<br>
+<select id="r2"> <option>COORDINADOR</option><option>PLANIFICADOR</option><option>IMPLEMENTADOR</option><option selected>REVISOR</option></select> Modifica el código<br>
+<select id="r3"> <option>COORDINADOR</option><option>PLANIFICADOR</option><option>IMPLEMENTADOR</option><option>REVISOR</option></select> Organiza las fases<br>
+<select id="r4"> <option>COORDINADOR</option><option>PLANIFICADOR</option><option>IMPLEMENTADOR</option><option>REVISOR</option></select> Comprueba el código contra el plan<br>
+<button class="btn" onclick="verificar()">Verificar</button>
+<p id="fb-roles"></p></div>
+
+<h2>🎬 Actividad 2 — Simulador multiagente</h2>
+<div class="card" style="text-align:center">
+<button onclick="flujo('usuario')">USUARIO</button> ↓
+<button onclick="flujo('coordinador')">COORDINADOR</button> ↓
+<button onclick="flujo('planificador')">PLANIFICADOR</button> ↓
+<button onclick="flujo('implementador')">IMPLEMENTADOR</button> ↓
+<button onclick="flujo('revisor')">REVISOR</button> ↓
+<button onclick="flujo('resultado')">RESULTADO</button>
+<p id="fb-flujo"></p></div>
+
+<h2>🔐 Actividad 3 — Permisos</h2>
+<div class="card"><p>Asigna permisos a cada agente (lee archivos / edita código / ejecuta tests / modifica specs):</p>
+<label>Coordinador: <input id="pc"></label><br>
+<label>Planificador: <input id="pp"></label><br>
+<label>Implementador: <input id="pi"></label><br>
+<label>Revisor: <input id="pr"></label><br>
+<button class="btn" onclick="evalPermisos()">Evaluar permisos</button>
+<p id="fb-permisos"></p></div>
+
+<h2>🕵️ Actividad 4 — Detecta el error</h2>
+<div class="card"><p>Arquitecturas con errores:</p>
+<ul><li>A. Coordinador modifica el código directamente</li><li>B. Revisor no tiene permisos de lectura</li><li>C. Implementador no puede ejecutar pruebas</li></ul>
+<select id="errs"><option>A</option><option>B</option><option>C</option></select>
+<button class="btn" onclick="detErr()">Verificar</button>
+<p id="fb-err"></p></div>
+
+<h2>🏆 Reto final del Módulo 3</h2>
+<div class="card"><p>Diseña un sistema multiagente completo (coordinador, planner, implementer, reviewer, permisos, flujo).</p>
+<a class="btn" href="reto.html">Ir al reto</a></div>
+<button class="btn" onclick="setModuleDone(3); alert('¡Módulo 3 completado!');">✅ Marcar Módulo 3 completado</button>
+
+</main><footer>OVA educativo — Carlos Ceballos · 2026</footer></div>
+<script src="../js/storage.js"></script>
+<script>
+const info = {usuario:'Usuario: pide una funcionalidad al sistema.',coordinador:'Coordinador: organiza las fases y transmite el contexto.',planificador:'Planificador: analiza la petición y diseña la solución.',implementador:'Implementador: modifica el código y ejecuta las pruebas.',revisor:'Revisor: comprueba el código frente al plan.',resultado:'Resultado: la solución validada llega al usuario.'};
+function flujo(k){ document.getElementById('fb-flujo').innerHTML='<b>'+k+':</b> '+info[k]; }
+function verificar(){
+  document.getElementById('fb-roles').innerHTML = (r1.value==='PLANIFICADOR'&&r2.value==='IMPLEMENTADOR'&&r3.value==='COORDINADOR'&&r4.value==='REVISOR') ? '✅ ¡Correcto!' : '❌ Revisa: Planificador diseña, Implementador modifica, Coordinador organiza, Revisor comprueba.';
+}
+function evalPermisos(){
+  const r = pr.value.toLowerCase();
+  document.getElementById('fb-permisos').innerHTML = r.includes('edit')||r.includes('modif') ? '⚠️ Principio de mínimo privilegio: el revisor NO debería modificar código.' : '✅ Bien: permisos mínimos para cada rol.';
+}
+function detErr(){
+  document.getElementById('fb-err').innerHTML = errs.value==='A' ? '✅ Correcto: el coordinador no debe editar código directamente.' : '❌ El error típico es que el coordinador toque código (opción A).';
+}
+</script>
+</body></html>
