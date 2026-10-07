@@ -1,3 +1,4 @@
+:root{--bg:#f0f4ff;--primary:#4361ee;--secondary:#7209b7;--text:#2d3748;--card:#fff}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4ff;color:#2d3748;min-height:100vh;display:flex}
 header{}
@@ -5,6 +6,8 @@ header{}
 .sidebar h2{color:#fff;font-size:1.1em;padding:0 20px 15px;border-bottom:1px solid #333;margin-bottom:10px}
 .sidebar a{display:block;color:#ccc;text-decoration:none;padding:12px 20px;transition:.2s}
 .sidebar a:hover,.sidebar a.active{background:#4361ee;color:#fff}
+.sidebar a.done{border-left:4px solid #22c55e;padding-left:16px}
+.sidebar a.pending{opacity:.7}
 .main{margin-left:230px;flex:1}
 header{background:linear-gradient(135deg,#4361ee,#7209b7);color:#fff;padding:30px 20px;box-shadow:0 4px 12px rgba(0,0,0,.15)}
 header h1{font-size:1.8em}

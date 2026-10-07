@@ -1,0 +1,42 @@
+Actúa como un Diseñador Instruccional Senior y Desarrollador Frontend Web especializado en Educación Abierta y Recursos Educativos Digitales Offline-First.
+
+Tengo un Objeto Virtual de Aprendizaje (OVA) estructurado en los siguientes archivos HTML/CSS/JS:
+
+- ova/index.html (Portada e introducción)
+- ova/diagnostico.html (Evaluación inicial)
+- ova/leccion1.html, leccion2.html, leccion3.html (Contenidos conceptuales)
+- ova/modulo1/index.html y reto.html
+- ova/modulo2/index.html y reto.html
+- ova/modulo3/index.html y reto.html
+- ova/portafolio.html (Evidencias del estudiante)
+- ova/evaluacion.html (Prueba sumativa final)
+- ova/resultados.html (Dashboard de avance y desempeño)
+- ova/js/storage.js y ova/js/progress.js (Manejo de estado en localStorage)
+- ova/css/style.css (Estilos generales)
+
+OBJETIVO:
+Transformar este OVA en una experiencia pedagógica altamente interactiva, centrada en el estudiante, autoguiada y gamificada, manteniendo la compatibilidad offline (HTML5, CSS3, JavaScript puro sin dependencias externas pesadas ni APIs de pago).
+
+REQUERIMIENTOS DE REDISEÑO Y MEJORA:
+
+1. ARQUITECTURA PEDAGÓGICA INTERACTIVA:
+   - Diseña e implementa una secuencia didáctica activa (Modelo ADDIE / Gagné) para las lecciones y módulos.
+   - Integra micro-retos interactivos dentro de cada lección (preguntas de opción múltiple con retroalimentación inmediata explícita, actividades de arrastrar y soltar simuladas o emparejamiento con JS vanila).
+   - Incluye indicadores visibles de progreso (barra de avance, insignias o logros desbloqueables guardados en localStorage).
+
+2. MEJORA DEL SISTEMA DE ALMACENAMIENTO (js/storage.js y js/progress.js):
+   - Refactoriza los scripts para registrar:
+     * Diagnóstico inicial (puntaje y falencias detectadas).
+     * Estado de lectura y tiempo de permanencia en lecciones.
+     * Calificación de retos por módulo.
+     * Entradas y evidencias del portafolio digital.
+     * Puntaje de la evaluación final y ponderación general.
+   - Permite la exportación del avance en formato JSON o impresión limpia en PDF desde `resultados.html`.
+
+3. INTERFAZ Y EXPERIENCIA DE USUARIO (UI/UX):
+   - Reorganiza el CSS (`css/style.css`) con variables CSS modernas (Custom Properties) para un diseño responsive, accesible (WCAG 2.1 AAA) y amigable con tarjetas de aprendizaje, botones de navegación claros y llamadas a la acción (CTA) dinámicas.
+   - Diseña un panel lateral (sidebar) o barra superior de navegación interactiva que muestre el estado de cada sección (Pendiente, En Proceso, Completado).
+
+4. ENTREGABLES REQUERIDOS:
+   - Dame la estructura técnica completa actualizada de JavaScript (`storage.js` y `progress.js`).
+   - Proporciona las plantillas base mejoradas para `leccion1.html`, `modulo1/reto.html` y `resultados.html`, mostrando cómo se integran los componentes interactivos y las llamadas al almacenamiento local.
