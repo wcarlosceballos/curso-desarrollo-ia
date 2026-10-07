@@ -42,23 +42,4 @@
 <p>Material educativo bajo licencia CC BY 4.0. Ver <code>LICENSE</code>.</p>
 <p>--- <i>&quot;No te reemplaza la IA. Te reemplaza un desarrollador que sabe dirigirla con criterio profesional.&quot;</i></p></main>
 <button class="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆️</button>
-
-<h2>🗂️ Explora por pestañas</h2>
-<div class="tabs">
-<button class="tab active" onclick="tab(this,0)">🎯 Objetivo</button>
-<button class="tab" onclick="tab(this,1)">🧠 Competencias</button>
-<button class="tab" onclick="tab(this,2)">📅 Ruta</button>
-</div>
-<div class="tabpanel active" id="t0"><p>Convertir al estudiante en un desarrollador que dirige IA con criterio profesional.</p></div>
-<div class="tabpanel" id="t1"><ul><li>Dirige modelos de IA</li><li>Configura entorno de desarrollo</li><li>Desarrolla con SDD</li><li>Coordina multiagentes</li></ul></div>
-<div class="tabpanel" id="t2"><p>Día 1: Fundamentos · Día 2: Harness & SDD · Día 3: Multiagentes</p></div>
-
-<h2>🃏 Flashcards — ¿Qué es un LLM?</h2>
-<div class="flashcard"><p><b>Haz clic para ver la respuesta</b></p><p class="back">Un modelo entrenado con mucho texto que predice el siguiente token por probabilidad.</p><button class="flipbtn" onclick="flip(this)">👀 Ver respuesta</button></div>
-<div class="flashcard"><p><b>Haz clic para ver la respuesta</b></p><p class="back">Un protocolo para conectar agentes con herramientas y datos externos.</p><button class="flipbtn" onclick="flip(this)">👀 Ver respuesta</button></div>
-<script>
-function tab(b,i){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.tabpanel').forEach(p=>p.classList.remove('active'));document.getElementById('t'+i).classList.add('active');}
-function flip(btn){const b=btn.parentElement.querySelector('.back');b.style.display=b.style.display==='block'?'none':'block';btn.textContent=b.style.display==='block'?'🙈 Ocultar':'👀 Ver respuesta';}
-</script>
-
 <footer>OVA educativo — Carlos Ceballos · 2026</footer></div></body></html>
