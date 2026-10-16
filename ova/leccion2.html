@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>📗 Día 2 — Harness & SDD</title><link rel="stylesheet" href="css/style.css"></head>
+<body data-lesson="leccion2"><aside class="sidebar">
+<h2>🤖 Desarrollo con IA</h2>
+<a href="index.html">🏠 Inicio</a>
+<a href="leccion1.html">📘 Día 1</a>
+<a href="leccion2.html">📘 Día 2</a>
+<a href="leccion3.html">📘 Día 3</a>
+<a href="evaluacion.html">📝 Evaluación</a><a href="portafolio.html">📂 Portafolio</a><a href="resultados.html">📊 Resultados</a>
+</aside>
+<div class="main">
+<header><h1>📗 Día 2 — Harness & SDD</h1></header><main><h2>📘 Día 2 — Harness Engineering y Spec-Driven Development</h2>
+<h3>🎯 Competencias</h3>
+<ul>
+<li>Configura un entorno de desarrollo asistido.</li>
+<li>Desarrolla siguiendo Spec-Driven Development.</li>
+</ul>
+<h3>Contenido</h3>
+<h4>1. Comandos personalizados</h4>
+<p>Prompt reutilizable ejecutado con <code>/&lt;nombre&gt;</code>. Creación: archivo Markdown en <code>.opencode/commands/</code>, descripción + instrucciones, reiniciar y ejecutar.</p>
+<h4>2. Agent Skills</h4>
+<p>Instrucciones reutilizables en <code>.agents/skills/&lt;nombre&gt;/SKILL.md</code> que el agente carga <b>cuando las necesita</b>.</p>
+<p>&gt; Diferencia clave: un comando <b>nunca</b> se ejecuta por iniciativa del agente; una skill <b>sí</b> se carga automáticamente.</p>
+<p>Instalación de skills de terceros: <code>npx skills add ...</code></p>
+<h4>3. MCP — Model Context Protocol</h4>
+<p>Protocolo para conectar al agente con herramientas externas. MCPs esenciales:</p>
+<ul>
+<li><b>Chrome DevTools</b>: probar la web, consola, capturas.</li>
+<li><b>Context7</b>: documentación actualizada de librerías.</li>
+<li><b>GitHub</b>: repos, issues, PRs.</li>
+<li><b>Figma</b>: diseños a código.</li>
+<li><b>Supabase</b>: bases de datos.</li>
+</ul>
+<p>Configuración: <code>opencode.json</code> → <code>mcp</code>. Gestión: <code>/mcps</code>.</p>
+<h4>4. Spec-Driven Development (SDD)</h4>
+<p>Definir qué debe hacer el sistema <b>antes</b> de programar.</p>
+<p><b>Taxonomía:</b></p>
+<ul>
+<li><i>Spec-first</i>: la spec muere tras generar el código.</li>
+<li><i>Spec-anchored</i> ⭐ (recomendada): la spec vive y guía la evolución.</li>
+<li><i>Spec-as-source</i>: solo se edita la spec; el código se genera.</li>
+</ul>
+<p><b>EARS</b>: requisitos con plantilla fija (SI… ENTONCES…) → verificables → convertibles en tests.</p>
+<p><b>Flujo SDD de 7 pasos:</b> 1. Constitución 2. Especificación (<code>spec.md</code>) 3. Clarificación 4. Planificación (<code>plan.md</code>) 5. Tareas (<code>tasks.md</code>) 6. Implementación 7. Validación</p>
+<h3>✅ Evidencia</h3>
+<p>Crear un <code>spec.md</code>, <code>plan.md</code> y <code>tasks.md</code> para una mini-app (ej. Diario de Estudio).</p>
+<p>📎 Apuntes: <code>recursos/apuntes_originales/Apuntes-Curso-Desarrollo-IA-Dia-2.pdf</code></p></main>
+<button class="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆️</button>
+<footer>OVA educativo — Carlos Ceballos · 2026</footer></div><script src="js/storage.js"></script><script src="js/lesson-tracker.js"></script></body></html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>📝 Evaluación final</title>
+<link rel="stylesheet" href="css/style.css"></head>
+<body><aside class="sidebar"><h2>🤖 Desarrollo con IA</h2>
+<a href="index.html">🏠 Inicio</a><a href="evaluacion.html">📝 Evaluación</a><a href="portafolio.html">📂 Portafolio</a><a href="resultados.html">📊 Resultados</a></aside>
+<div class="main"><header><h1>📝 Evaluación Final por Competencias</h1></header><main>
+
+<div class="card"><h3>Competencia 1 — Dirigir IA (30%)</h3>
+<p>1. Un prompt profesional incluye:</p>
+<button onclick="resp(this)" data-ok="1">Rol, contexto, tarea, restricciones y formato</button>
+<button onclick="resp(this)">Solo la pregunta</button>
+</div>
+
+<div class="card"><h3>Competencia 2 — SDD/Harness (35%)</h3>
+<p>2. El orden correcto de SDD es:</p>
+<button onclick="resp(this)" data-ok="1">Constitución→Spec→Clarificación→Plan→Tasks→Implementación→Validación</button>
+<button onclick="resp(this)">Implementación→Plan→Spec→Validación</button>
+<p>3. EARS ayuda a:</p>
+<button onclick="resp(this)" data-ok="1">Escribir requisitos verificables</button>
+<button onclick="resp(this)">Colorear la interfaz</button>
+</div>
+
+<div class="card"><h3>Competencia 3 — Multiagentes (35%)</h3>
+<p>4. ¿Quién coordina el flujo?</p>
+<button onclick="resp(this)" data-ok="1">El coordinador</button>
+<button onclick="resp(this)">El revisor</button>
+<p>5. El implementador:</p>
+<button onclick="resp(this)">Solo lee</button>
+<button onclick="resp(this)" data-ok="1">Modifica código y ejecuta pruebas</button>
+</div>
+
+<p id="res"></p>
+</main><footer>OVA educativo — Carlos Ceballos · 2026</footer></div>
+<script>
+let score=0;
+function resp(btn){
+  const ok = btn.hasAttribute('data-ok');
+  document.getElementById('res').textContent = ok ? '✅ Correcto' : '❌ Intenta de nuevo';
+  if(ok && !btn.dataset.done){score++;btn.dataset.done='1';document.getElementById('res').textContent += ' — Puntaje: '+score+'/5';}
+}
+</script>
+</body></html>

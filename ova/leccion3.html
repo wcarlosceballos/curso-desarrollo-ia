@@ -1,0 +1,51 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>📘 Día 3 — Multiagentes</title><link rel="stylesheet" href="css/style.css"></head>
+<body data-lesson="leccion3"><aside class="sidebar">
+<h2>🤖 Desarrollo con IA</h2>
+<a href="index.html">🏠 Inicio</a>
+<a href="leccion1.html">📘 Día 1</a>
+<a href="leccion2.html">📘 Día 2</a>
+<a href="leccion3.html">📘 Día 3</a>
+<a href="evaluacion.html">📝 Evaluación</a><a href="portafolio.html">📂 Portafolio</a><a href="resultados.html">📊 Resultados</a>
+</aside>
+<div class="main">
+<header><h1>📘 Día 3 — Multiagentes</h1></header><main><h2>📘 Día 3 — Multiagentes y Subagentes</h2>
+<h3>🎯 Competencia</h3>
+<p>Coordina sistemas multiagentes con permisos y flujo SDD.</p>
+<h3>Contenido</h3>
+<h4>1. Agentes y subagentes</h4>
+<ul>
+<li><b>Custom agent</b>: asistente configurado con sus instrucciones, permisos y modelo (<code>mode: primary</code>).</li>
+<li><b>Subagente</b>: agente especializado al que el principal delega (<code>mode: subagent</code>), trabaja en sesión separada.</li>
+</ul>
+<p>Creación: <code>.opencode/agents/&lt;nombre&gt;.md</code> + reiniciar OpenCode + invocar con <code>@nombre</code>.</p>
+<h4>2. Agentes por defecto en OpenCode</h4>
+<ul>
+<li>Principales: <code>build</code> (escribe código), <code>plan</code> (planifica).</li>
+<li>Subagentes: <code>general</code> (varias pasos), <code>explore</code> (exploración solo lectura).</li>
+<li>Consulta: <code>/agents</code>.</li>
+</ul>
+<h4>3. Sistemas multiagentes</h4>
+<p>Varios agentes especializados coordinados por un agente principal:</p>
+<p><code>`</code> coordinador → planificador → implementador → revisor <code>`</code></p>
+<table>
+<tr><td>Rol</td><td>Función</td></tr>
+<tr><td>Coordinador</td><td>Organiza fases, transmite contexto</td></tr>
+<tr><td>Planificador</td><td>Analiza la petición, diseña la solución</td></tr>
+<tr><td>Implementador</td><td>Modifica código, ejecuta pruebas</td></tr>
+<tr><td>Revisor</td><td>Comprueba el código contra el plan</td></tr>
+</table>
+<h4>4. Estructura multiagente</h4>
+<p><code>`</code> project/ ├── AGENTS.md, MEMORY.md ├── docs/, specs/, tests/ └── .opencode/agents/ ├── coordinator.md ├── planner.md ├── implementer.md └── reviewer.md <code>`</code></p>
+<p><b>Permisos por agente</b> (clave del Day 3):</p>
+<ul>
+<li>Planner: <code>edit</code> denegado, solo <code>specs/**</code> permitido.</li>
+<li>Coordinador: no edita, solo delega en los tres subagentes.</li>
+<li>Implementador: edita código y ejecuta tests.</li>
+<li>Reviewer: solo lectura + veredicto.</li>
+</ul>
+<p>&gt; Los subagentes <b>no ven</b> la conversación principal: el coordinador les pasa todo el contexto en cada llamada.</p>
+<h3>✅ Evidencia</h3>
+<p>Diseñar y documentar la arquitectura de un sistema multiagente con sus permisos.</p>
+<p>📎 Apuntes: <code>recursos/apuntes_originales/Apuntes-Curso-Desarrollo-IA-Dia-3.pdf</code></p></main>
+<button class="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆️</button>
+<footer>OVA educativo — Carlos Ceballos · 2026</footer></div><script src="js/storage.js"></script><script src="js/lesson-tracker.js"></script></body></html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>🏆 Reto Módulo 3</title>
+<link rel="stylesheet" href="../css/style.css"></head><body>
+<aside class="sidebar"><h2>🤖 Desarrollo con IA</h2><a href="../index.html">🏠 Inicio</a><a href="index.html">📘 Módulo 3</a></aside>
+<div class="main"><header><h1>🏆 Reto final del Módulo 3</h1></header><main>
+<h2>🎯 Misión</h2><p>Documenta un sistema multiagente completo y descárgalo.</p>
+<div class="card">
+<textarea id="doc" rows="10" style="width:100%" placeholder="Describe coordinador, planner, implementer, reviewer, permisos, flujo, contexto, entradas y salidas..."></textarea><br>
+<button class="btn" onclick="descargar()">Guardar y descargar</button>
+<p id="fb"></p></div>
+</main><footer>OVA educativo — Carlos Ceballos · 2026</footer></div>
+<script src="../js/storage.js"></script>
+<script>
+function descargar(){
+  saveProgress(Object.assign(getProgress(),{reto3:doc.value}));
+  const a=document.createElement('a');a.href='data:text/plain;charset=utf-8,'+encodeURIComponent(doc.value);a.download='reto3.md';a.click();
+  document.getElementById('fb').innerHTML='✅ Evidencia guardada y descargada.';
+}
+</script>
+</body></html>

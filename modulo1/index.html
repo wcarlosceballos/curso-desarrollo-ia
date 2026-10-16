@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>📘 Módulo 1 — Dirigir la IA</title>
+<link rel="stylesheet" href="../css/style.css"></head>
+<body><aside class="sidebar"><h2>🤖 Desarrollo con IA</h2>
+<a href="../index.html">🏠 Inicio</a><a href="../diagnostico.html">🩺 Diagnóstico</a>
+<a href="../modulo1/index.html">📘 Módulo 1</a><a href="../modulo2/index.html">📗 Módulo 2</a>
+<a href="../modulo3/index.html">📘 Módulo 3</a></aside>
+<div class="main"><header><h1>📘 Módulo 1 — Dirigir la IA</h1></header><main>
+
+<h2>🎯 Competencia</h2><p>Dirige modelos de IA con criterio profesional.</p>
+
+<details><summary>🔑 Saber</summary><p>Qué es un LLM, tokens, temperatura, ventana de contexto, alucinaciones, selección de modelos.</p></details>
+<details><summary>🛠️ Saber hacer</summary><p>Escribir prompts profesionales y evaluar sus salidas.</p></details>
+<details><summary>🌟 Saber ser</summary><p>Usar IA con criterio, verificando siempre.</p></details>
+
+<!-- ACTIVIDAD 1 -->
+<h2>🎬 Actividad 1 — ¿Qué harías tú?</h2>
+<div class="card"><p>Un desarrollador le pide a una IA que construya una aplicación completa con una instrucción de una sola línea.</p>
+<button onclick="respEscenario(this)">A. Aceptar el código tal cual</button>
+<button onclick="respEscenario(this)">B. Refinar el prompt y revisar el código</button>
+<button onclick="respEscenario(this)">C. Pedir otro modelo más caro</button>
+<p id="fb-escenario"></p></div>
+
+<!-- ACTIVIDAD 2 -->
+<h2>🔍 Actividad 2 — Descubre el LLM</h2>
+<div class="card" style="text-align:center">
+<button onclick="mostrar('prompt')">PROMPT</button> ↓
+<button onclick="mostrar('tokens')">TOKENS</button> ↓
+<button onclick="mostrar('modelo')">MODELO</button> ↓
+<button onclick="mostrar('probabilidades')">PROBABILIDADES</button> ↓
+<button onclick="mostrar('respuesta')">RESPUESTA</button>
+<p id="fb-llm"></p>
+</div>
+
+<!-- ACTIVIDAD 3 -->
+<h2>🕵️ Actividad 3 — Detecta la alucinación</h2>
+<div class="card"><p>La IA dijo: <i>"El protocolo SDD fue creado por Google en 2020 y es obligatorio en todos los proyectos."</i></p>
+<button onclick="respAlucinacion(this)">Confiable</button>
+<button onclick="respAlucinacion(this)">Posible alucinación</button>
+<p id="fb-alucinacion"></p></div>
+
+<!-- ACTIVIDAD 4 -->
+<h2>🏗️ Actividad 4 — Constructor de prompts</h2>
+<div class="card">
+<label>Rol:<br><input id="rol" style="width:100%" oninput="build()"></label><br>
+<label>Contexto:<br><textarea id="ctx" style="width:100%" oninput="build()"></textarea></label><br>
+<label>Tarea:<br><textarea id="tarea" style="width:100%" oninput="build()"></textarea></label><br>
+<label>Restricciones:<br><input id="rest" style="width:100%" oninput="build()"></label><br>
+<label>Formato:<br><input id="formato" style="width:100%" oninput="build()"></label>
+<h4>📌 Prompt resultante:</h4>
+<pre id="prompt-out"></pre>
+<button class="btn" onclick="evaluarPrompt()">Evaluar mi prompt</button>
+<p id="fb-prompt"></p>
+</div>
+
+<h2>🏆 Reto del Módulo 1</h2>
+<div class="card"><p>Crea un prompt profesional para resolver un problema real de desarrollo de software.</p>
+<a class="btn" href="reto.html">Ir al reto</a></div>
+<button class="btn" onclick="setModuleDone(1); alert('¡Módulo 1 marcado como completado!');">✅ Marcar Módulo 1 completado</button>
+
+</main><footer>OVA educativo — Carlos Ceballos · 2026</footer></div>
+<script src="../js/storage.js"></script>
+<script>
+const llmInfo = {prompt:'Lo que escribes: instrucciones para el modelo.',tokens:'El texto se divide en pedazos llamados tokens.',modelo:'El LLM procesa los tokens.',probabilidades:'Calcula qué token viene después.',respuesta:'Repite hasta completar la respuesta.'};
+function mostrar(k){ document.getElementById('fb-llm').innerHTML='<b>'+k.toUpperCase()+':</b> '+llmInfo[k]; }
+function respEscenario(btn){ document.getElementById('fb-escenario').innerHTML = btn.textContent.startsWith('B') ? '✅ Correcto: refinar y revisar es lo profesional.' : '❌ Lo más adecuado es refinar el prompt y revisar el código (opción B).'; }
+function respAlucinacion(btn){ document.getElementById('fb-alucinacion').innerHTML = btn.textContent.includes('alucinación') ? '✅ Correcto: suena específica pero probablemente es inventada.' : '❌ Esa respuesta tiene señales de alucinación.'; }
+function build(){
+  const r=document.getElementById('rol').value,c=document.getElementById('ctx').value,t=document.getElementById('tarea').value,x=document.getElementById('rest').value,f=document.getElementById('formato').value;
+  document.getElementById('prompt-out').textContent = `Actúa como ${r}.\nContexto: ${c}\nTarea: ${t}\nRestricciones: ${x}\nFormato de salida: ${f}`;
+}
+function evaluarPrompt(){
+  const r=rol.value,c=ctx.value,t=tarea.value,x=rest.value,f=formato.value;
+  let pts=0;[r,c,t,x,f].forEach(v=>{ if(v.trim().length>3) pts+=20; });
+  let fb = pts===100 ? 'Excelente prompt completo.' : pts>=60 ? 'Buen inicio, revisa restricciones y formato.' : 'El prompt necesita más detalle.';
+  document.getElementById('fb-prompt').innerHTML=`<b>Puntuación:</b> ${pts}/100 — ${fb}`;
+  saveProgress(Object.assign(getProgress(),{promptScore:pts}));
+}
+</script>
+</body></html>

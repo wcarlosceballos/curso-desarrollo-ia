@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>📗 Módulo 2 — Harness + SDD</title>
+<link rel="stylesheet" href="../css/style.css"></head>
+<body><aside class="sidebar"><h2>🤖 Desarrollo con IA</h2>
+<a href="../index.html">🏠 Inicio</a><a href="../modulo1/index.html">📘 Módulo 1</a><a href="../modulo2/index.html">📗 Módulo 2</a></aside>
+<div class="main"><header><h1>📗 Módulo 2 — Construir con especificaciones</h1></header><main>
+
+<h2>🎯 Competencias</h2>
+<p>Configura un entorno de desarrollo asistido y desarrolla siguiendo Spec-Driven Development.</p>
+
+<h2>🎬 Actividad 1 — Ordena el proceso SDD</h2>
+<div class="card"><p>Organiza los pasos en el orden correcto usando ↑/↓:</p>
+<ol id="pasos" style="list-style:none"></ol>
+<button class="btn" onclick="verificarOrden()">Verificar orden</button>
+<p id="fb-orden"></p></div>
+
+<h2>🏗️ Actividad 2 — Construye una spec</h2>
+<div class="card">
+<p><b>Problema:</b> Crear una mini aplicación de Diario de Estudio.</p>
+<label>¿Qué debe hacer?<br><input id="s1"></label><br>
+<label>¿Qué usuario tendrá?<br><input id="s2"></label><br>
+<label>¿Qué datos manejará?<br><input id="s3"></label><br>
+<label>¿Qué restricciones existen?<br><input id="s4"></label><br>
+<label>¿Qué comportamiento debe cumplir?<br><input id="s5"></label><br>
+<button class="btn" onclick="generarSpec()">Generar spec.md</button>
+<pre id="spec-out"></pre></div>
+
+<h2>📝 Actividad 3 — EARS</h2>
+<div class="card"><p>Convierte este requisito en EARS: <i>"El usuario debe poder guardar una nota."</i></p>
+<textarea id="ears" rows="3" style="width:100%"></textarea><br>
+<button class="btn" onclick="evalEARS()">Evaluar EARS</button>
+<p id="fb-ears"></p></div>
+
+<h2>🗺️ Actividad 4 — Spec → Plan → Tasks</h2>
+<div class="card">
+<h4>De tu spec al plan:</h4>
+<textarea id="plan" rows="4" style="width:100%"></textarea>
+<h4>Tasks (separadas por coma):</h4>
+<input id="tasks" style="width:100%"><br>
+<button class="btn" onclick="guardarPlan()">Guardar plan</button>
+<p id="fb-plan"></p></div>
+
+<h2>🏆 Reto del Módulo 2</h2>
+<div class="card"><p>Construye una mini especificación completa (spec.md, plan.md, tasks.md).</p>
+<a class="btn" href="reto.html">Ir al reto</a></div>
+<button class="btn" onclick="setModuleDone(2); alert('¡Módulo 2 completado!');">✅ Marcar Módulo 2 completado</button>
+
+</main><footer>OVA educativo — Carlos Ceballos · 2026</footer></div>
+<script src="../js/storage.js"></script>
+<script>
+let pasos = ['Constitución','Spec','Clarificación','Plan','Tasks','Implementación','Validación'];
+pasos = pasos.sort(()=>Math.random()-0.5);
+function render(){
+  document.getElementById('pasos').innerHTML = pasos.map((p,i)=>`<li><button onclick="mover(${i},-1)">↑</button><button onclick="mover(${i},1)">↓</button> ${p}</li>`).join('');
+}
+function mover(i,d){ if((i+d)<0||(i+d)>=pasos.length) return; [pasos[i],pasos[i+d]]=[pasos[i+d],pasos[i]]; render(); }
+render();
+const correcta = ['Constitución','Spec','Clarificación','Plan','Tasks','Implementación','Validación'];
+function verificarOrden(){
+  const ok = JSON.stringify(pasos)===JSON.stringify(correcta);
+  document.getElementById('fb-orden').innerHTML = ok? '✅ ¡Orden correcto! El flujo SDD es: Constitución → Spec → Clarificación → Plan → Tasks → Implementación → Validación.' : '❌ Aún no. El orden correcto es: Constitución → Spec → Clarificación → Plan → Tasks → Implementación → Validación.';
+}
+function generarSpec(){
+  const t = `# spec.md\n\n## Objetivo\n${s1.value}\n\n## Usuario\n${s2.value}\n\n## Datos\n${s3.value}\n\n## Restricciones\n${s4.value}\n\n## Comportamiento\n${s5.value}`;
+  document.getElementById('spec-out').textContent = t;
+  saveProgress(Object.assign(getProgress(),{spec:t}));
+}
+function evalEARS(){
+  const v = ears.value.toUpperCase();
+  document.getElementById('fb-ears').innerHTML = v.includes('SI') && v.includes('ENTONCES') ? '✅ Buen formato EARS: SI… ENTONCES…' : '⚠️ EARS suele usar: SI [condición], ENTONCES el sistema DEBE [requisito verificable].';
+}
+function guardarPlan(){
+  const p = Object.assign(getProgress(),{plan: plan.value, tasks: tasks.value});
+  saveProgress(p);
+  document.getElementById('fb-plan').innerHTML = '✅ Plan y tasks guardados.';
+}
+</script>
+</body></html>
