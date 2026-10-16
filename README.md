@@ -39,5 +39,13 @@ Los 3 días de apuntes originales en `recursos/apuntes_originales/` y la guía d
 
 Material educativo bajo licencia CC BY 4.0. Ver `LICENSE`.
 
+## 🎓 Demostración en vivo
+
+**https://wcarlosceballos.github.io/curso-desarrollo-ia/**
+
+Ábrela en el navegador: no requiere instalación ni registro. Funciona offline una vez
+cargada, porque el progreso se guarda en `localStorage`.
+
+---
 ---
 *"No te reemplaza la IA. Te reemplaza un desarrollador que sabe dirigirla con criterio profesional."*
