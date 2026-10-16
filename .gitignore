@@ -1,0 +1,16 @@
+# ── Duplicados: misma guia en dos rutas (MD5 idéntico verificado) ────────
+# La copia de referencia vive en recursos/. La de apuntes_originales/ es
+# el mismo archivo (18,6 MB) y no se versiona para no duplicar el peso.
+recursos/apuntes_originales/Guia-de-Modelos-de-IA-2026-*.pdf
+
+# ── Artefactos de construcción ───────────────────────────────────────────
+ova.zip
+*.bak
+*.tmp
+
+# ── Sistema y editores ───────────────────────────────────────────────────
+__pycache__/
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
