@@ -35,6 +35,8 @@ Convertir al estudiante en un **desarrollador que dirige IA con criterio profesi
 
 Los 3 días de apuntes originales en `recursos/apuntes_originales/` y la guía de modelos de IA 2026 en `recursos/`.
 
+- `recursos/glosario.md` — **glosario de términos técnicos** para consultar sin quedarse trabado. Incluye un caso de estudio (ArtCraft) que conecta arquitectura, MCP y agentes con un proyecto real.
+
 ## 📄 Licencia
 
 Material educativo bajo licencia CC BY 4.0. Ver `LICENSE`.
