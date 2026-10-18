@@ -74,17 +74,48 @@ sí está versionada** — es la que hay que mantener.
 
 ---
 
-## El sitio no enlaza los documentos
+## ⚠️ `gh-pages` publica los `.md` y los PDF
 
-Los `.md` y `.pdf` **no son alcanzables desde el sitio**. Los HTML solo muestran la ruta
-como texto plano:
+Corregido el 17 oct 2026. Este archivo decía antes que los documentos "no son
+alcanzables desde el sitio". **Es falso, y estaba en un commit ya publicado.**
+
+Lo que pasa: `gh-pages` contiene **52 archivos**, incluidos los `.md` de la fuente, los
+PDF de `recursos/apuntes_originales/` (2,8 MB cada uno), `Instrucciones.md` y `spec.txt`.
+Todos responden **200** en su URL pública:
+
+```bash
+curl -o /dev/null -w "%{http_code}" \
+  https://wcarlosceballos.github.io/curso-desarrollo-ia/recursos/apuntes_originales/Apuntes-Curso-Desarrollo-IA-Dia-1.pdf
+```
+
+**La distinción correcta:** los documentos **no están enlazados** desde el HTML —los HTML
+solo muestran la ruta como texto plano—. Eso es deliberado. Pero **sí están publicados**,
+y "no enlazado" no es "no público". Un archivo en la URL se encuentra con un buscador.
+
+**Decidir:** ¿los apuntes originales de la SENA deben estar públicos en el sitio, o solo
+en el repo? Hoy están en los dos sitios.
+
+## ⚠️ `gh-pages` tiene DOS copias del sitio
+
+```text
+raíz:     index.html · leccion1-3.html · css/ · js/ · modulo1-3/ · portafolio.html
+y además: ova/  ← copia completa de lo mismo
+```
+
+Por eso funcionan tanto `/leccion2.html` como `/ova/leccion2.html`: **los dos dan 200.**
+Duplicado que no se documentaba en ninguna parte.
+
+## El `.gitignore` protege un duplicado, pero el sitio publica el otro
+
+**Lo que sí es cierto:** los HTML no los enlazan. Muestran la ruta como texto plano:
 
 ```html
 <p>📎 Apuntes originales: <code>recursos/apuntes_originales/Apuntes-...-Dia-1.pdf</code></p>
 ```
 
-Quien entra a la página tiene que ir al repo a buscarlos. Es intencional (los `.md` son
-fuente, no material publicado), pero **conviene saberlo antes de prometer algo en clase.**
+Así que quien navega el sitio no los encuentra por ahí — pero **quien sepa la URL sí**, y
+eso incluye a un buscador. Que estén "sin enlazar" es una decisión de navegación, no una
+medida de privacidad.
 
 ---
 
