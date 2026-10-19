@@ -38,6 +38,10 @@ El proyecto actual contiene aproximadamente:
 * `evaluacion.html`
 * `css/style.css`
 
+Estas rutas son **relativas al OVA**: los archivos están dentro de la carpeta
+`ova/` del repositorio. En el repositorio completo se ven como
+`ova/index.html`, `ova/leccion1.html`, `ova/css/style.css`, etc.
+
 El contenido actual está organizado en tres días:
 
 ### Día 1 — Fundamentos de IA y Prompt Engineering
