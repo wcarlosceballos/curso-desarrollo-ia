@@ -13,5 +13,5 @@ Escala: **Excelente (4)** · **Logrado (3)** · **En proceso (2)** · **Inicial 
 **Instrumentos:**
 - Portafolio digital (evidencias de cada competencia)
 - Observación del trabajo con OpenCode
-- Banco de preguntas (`evaluacion/preguntas.md`)
+- Banco de preguntas (`preguntas.md`)
 - Rúbrica de alineación DI (coherencia objetivos–contenidos–evaluación)
