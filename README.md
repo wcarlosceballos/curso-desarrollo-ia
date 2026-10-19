@@ -35,9 +35,20 @@ Convertir al estudiante en un **desarrollador que dirige IA con criterio profesi
 
 Los 3 días de apuntes originales en `recursos/apuntes_originales/` y la guía de modelos de IA 2026 en `recursos/`.
 
+- `recursos/glosario.md` — **glosario de términos técnicos** para consultar sin quedarse trabado. Incluye un caso de estudio (ArtCraft) que conecta arquitectura, MCP y agentes con un proyecto real.
+- `recursos/historia-ia-generativa.md` — **material de estudio**: historia de la IA generativa con analogía, línea de tiempo, taller de 45 minutos y preguntas de verificación. Está publicado en el sitio como página web (`ova/recurso-historia.html`) y enlazado desde el Día 1.
+
 ## 📄 Licencia
 
 Material educativo bajo licencia CC BY 4.0. Ver `LICENSE`.
 
+## 🎓 Demostración en vivo
+
+**https://wcarlosceballos.github.io/curso-desarrollo-ia/**
+
+Ábrela en el navegador: no requiere instalación ni registro. Funciona offline una vez
+cargada, porque el progreso se guarda en `localStorage`.
+
+---
 ---
 *"No te reemplaza la IA. Te reemplaza un desarrollador que sabe dirigirla con criterio profesional."*

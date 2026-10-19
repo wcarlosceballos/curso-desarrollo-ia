@@ -1,0 +1,357 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>🕰️ Historia de la IA generativa</title><link rel="stylesheet" href="css/style.css"></head>
+<body><aside class="sidebar">
+<h2>🤖 Desarrollo con IA</h2>
+<a href="index.html">🏠 Inicio</a>
+<a href="leccion1.html">📘 Día 1</a>
+<a href="leccion2.html">📘 Día 2</a>
+<a href="leccion3.html">📘 Día 3</a>
+<a href="evaluacion.html">📝 Evaluación</a><a href="portafolio.html">📂 Portafolio</a><a href="resultados.html">📊 Resultados</a>
+</aside>
+<div class="main">
+<header><h1>🕰️ Historia de la IA generativa</h1></header><main>
+
+<div class="card">
+<p><b>Material de estudio.</b> Complementa el <a href="leccion1.html">Día 1 — Fundamentos</a>: allí se explica <i>qué es</i> un modelo de lenguaje; aquí se explica <i>de dónde salió</i> y, sobre todo, <b>por qué se equivoca sin darse cuenta</b>.</p>
+<p><b>Cómo usarlo.</b> Está escrito para leerse de corrido (90 minutos) y luego usarse como base del taller de 45 minutos que está más abajo. No necesitas saber programar ni matemáticas. Si un término no está en el <a href="https://github.com/wcarlosceballos/curso-desarrollo-ia/blob/main/recursos/glosario.md">glosario</a>, búscalo ahí.</p>
+<p><b>Prerrequisitos:</b> saber qué es un programa de computador y qué es un archivo de texto. Nada más.</p>
+</div>
+
+<h2>1. Las cinco palabras que sostienen todo</h2>
+<p>Si una de estas se te escapa, vuelve a ella. El resto del documento se apoya en ellas.</p>
+<table>
+<thead><tr><th>Palabra</th><th>Qué significa, en palabras sencillas</th></tr></thead>
+<tbody>
+<tr><td><b>Modelo</b></td><td>Un archivo gigante con números adentro que guardan lo que una máquina aprendió de muchos ejemplos. Es como un cuaderno con patrones, no con respuestas.</td></tr>
+<tr><td><b>Parámetro</b></td><td>Cada uno de esos números. Un modelo con 175 mil millones de parámetros tiene 175 mil millones de números ajustados por una máquina.</td></tr>
+<tr><td><b>Entrenamiento</b></td><td>El proceso de ajustar esos números usando millones de ejemplos. Es un trabajo de meses, con miles de chips.</td></tr>
+<tr><td><b>Token</b></td><td>Un pedacito de texto, normalmente una palabra o parte de palabra. «Hola, ¿cómo estás?» puede ser 5 fichas. El modelo trabaja con fichas, no con letras.</td></tr>
+<tr><td><b>Alucinación</b></td><td>Una respuesta falsa que el modelo da con el formato exacto de una respuesta verdadera. No es mentira: es un error de fábrica.</td></tr>
+</tbody>
+</table>
+<p><b>Dato que parece absurdo y es real:</b> si este documento lo conviertes en texto y se lo mandas a un modelo, ocupa <b>miles de tokens</b>. Un libro de 300 páginas son unas 100 mil fichas. Cada vez que le escribes a una IA estás gastando (o usando cuota) por las fichas que mandas <b>más</b> las que te devuelve.</p>
+
+<h2>2. La biblioteca y el archivista</h2>
+<p>Esta es la analogía que sostiene toda la explicación. Léela completa antes de seguir.</p>
+
+<h3>2.1 El escenario</h3>
+<p>Imagina una biblioteca municipal con un solo archivista, llamado <b>Atlas</b>. Atlas no es una persona: es un personaje con una capacidad desbordada. Leyó millones de documentos y de cada uno se quedó con el <b>molde</b>, no con el contenido.</p>
+<p>La diferencia es importantísima y hay que tenerla clara:</p>
+<ul>
+<li>Atlas <b>no puede mostrarte</b> un documento de su archivo. Si le pides «repite el artículo tal cual», puede que no sepa cuál era.</li>
+<li>Atlas <b>sí sabe imitar la forma</b> en que están escritos los documentos: cómo arranca una novela, cómo se redacta un manual técnico, cómo se escribe un correo de venta, cómo se estructura un mensaje corto.</li>
+</ul>
+<p>Toda la IA generativa actual, en lo esencial, es eso: <b>Atlas, pero con un archivista que además escribe</b>.</p>
+
+<h3>2.2 Antes de 2014: la biblioteca solo clasificaba</h3>
+<p>Hasta 2014, las máquinas eran hábiles clasificando. Les dabas fotos y te decían «gato» o «perro». Les dabas correos y te decían «spam» o «no spam». Se le llamaba <b>aprendizaje automático</b>, que es simplemente esto: en vez de que un programador escriba la regla, le das muchos ejemplos y la máquina deduce la regla sola.</p>
+<p>Pero clasificar y <b>crear</b> son cosas muy distintas. Una máquina que clasifica no inventa nada nuevo: reconoce cosas que ya existen. Desde 2014, el objetivo cambió: no solo reconocer, sino <b>generar</b>.</p>
+
+<h3>2.3 2014: el falsificador y el perito</h3>
+<p>Aparece un invento que enciende la mecha: dos personajes jugando en el mismo edificio.</p>
+<ul>
+<li><b>El Falsificador</b> inventa documentos falsos.</li>
+<li><b>El Perito</b> los revisa y dictamina: «esto es auténtico» o «esto es inventado».</li>
+</ul>
+<p>Atlas hace <b>las dos cosas a la vez</b>, y entrena en rondas:</p>
+<ol>
+<li>Atlas falsifica un documento.</li>
+<li>Se lo pasan al Perito.</li>
+<li>El Perito lo rechaza: «es falso».</li>
+<li>Atlas ajusta su técnica y vuelve a falsificar.</li>
+<li>El Perito lo acepta por error: «es auténtico».</li>
+<li>Atlas aprende que esa técnica sí convence.</li>
+</ol>
+<p>Cuando el Perito <b>ya no puede distinguir</b> los documentos falsos de los reales, Atlas ha aprendido a escribir como los reales. Ese duelo se llama <b>GAN</b>: <i>Generative Adversarial Networks</i>, en español <b>redes generadoras adversarias</b> (adversarias porque las dos redes compiten entre sí, una contra la otra).</p>
+<div class="card">
+<p><b>Por qué importa en la historia:</b> sin el duelo del falsificador y el perito no existirían hoy los generadores de imágenes. Es el antepasado directo de herramientas como DALL·E, Midjourney y Stable Diffusion.</p>
+</div>
+
+<h3>2.4 2017: el salto de estante</h3>
+<p>Hasta aquí, Atlas leía <b>documento por documento, en orden</b>, como alguien que lee un libro sin poder pasar páginas. Para entender el último párrafo necesitaba recorrer todos los anteriores. Eso hace el entrenamiento lentísimo, y mientras sea lento no hay escala posible.</p>
+<p>En 2017, un equipo de Google publica un documento titulado <i>«Attention Is All You Need»</i> (en español: <i>«La atención lo es todo lo que necesitas»</i>). La idea central:</p>
+<div class="card">
+<p>En vez de leer todo en orden, <b>saltar directo al estante que importa</b> y atender solo ese.</p>
+</div>
+<p>Eso se llama <b>atención</b>, y funciona como cuando estás en una reunión y, aunque hablen diez personas, prestas atención selectiva a lo que te concierne. El salto de estante es el invento técnico más importante de toda la historia de la IA generativa.</p>
+<p><b>Todos</b> los modelos que existen hoy (ChatGPT, Gemini, Claude, Llama, DeepSeek, Mistral, y también el que esté corrigiendo este material) usan esta misma idea en su base. Cuando leas «Transformer» en cualquier artículo, se refiere a esto: una forma de organizar el trabajo de una red para que pueda atender a lo importante sin recorrerlo todo.</p>
+
+<h3>2.5 2018-2020: más estantes, más libros</h3>
+<p>Con el salto de estante resuelto, la pregunta de la industria fue simple: <b>¿qué pasa si el archivista es más grande?</b> OpenAI lanza tres versiones:</p>
+<table>
+<thead><tr><th>Año</th><th>Modelo</th><th>Qué sabía hacer</th></tr></thead>
+<tbody>
+<tr><td>2018</td><td>GPT-1</td><td>Redactar frases coherentes.</td></tr>
+<tr><td>2019</td><td>GPT-2</td><td>Escribir como una persona. Lo publicaron por partes porque les parecía demasiado bueno para soltarlo de una.</td></tr>
+<tr><td>2020</td><td>GPT-3</td><td>Una biblioteca de <b>175 mil millones de parámetros</b>. Ya responde preguntas, resume y traduce, sin que nadie le enseñara esas tareas.</td></tr>
+</tbody>
+</table>
+<div class="card">
+<p><b>El descubrimiento que sostiene toda la industria:</b> GPT-3 no fue una idea nueva. Fue <b>GPT-2 pero mucho más grande</b>. Al darle suficientes libros, Atlas desarrolló habilidades que <b>nadie le había enseñado</b>: nadie le mostró cómo resumir y sin embargo resume. A esas habilidades se les llama <b>emergentes</b> (aparecen solas cuando el tamaño cruza cierto punto).</p>
+<p>Desde ese día, la receta de la industria es la misma y no ha cambiado mucho: más datos, más tamaño, más chips.</p>
+</div>
+
+<h3>2.6 2021-2022: Atlas aprende a dibujar</h3>
+<p>Atlas aprende un oficio nuevo: <b>dibujar</b>. Su método es el de un <b>borrador que se pule</b>:</p>
+<ol>
+<li>Parte de una mancha de ruido, como la estática de un televisor viejo.</li>
+<li>Le va quitando «niebla» poco a poco.</li>
+<li>Cuando despeja, aparece la imagen.</li>
+</ol>
+<p>Ese método se llama <b>difusión</b> (la imagen se va difuminando hacia el ruido, o el ruido se difumina hacia la imagen). De ahí salieron DALL·E, Midjourney y Stable Diffusion. Este último tiene un detalle importante: es <b>de código abierto</b>, o sea que cualquiera puede tener un Atlas dibujante en su propio computador, sin pagarle a nadie.</p>
+
+<h3>2.7 Noviembre de 2022: se abre la ventanilla</h3>
+<p>Hasta este momento, Atlas vivía dentro del edificio, y solo la gente que sabía entrar podía usarlo. Entonces alguien puso <b>una ventanilla de atención al público</b>.</p>
+<p><b>ChatGPT</b> no fue un invento técnico: era la misma conversación con Atlas, pero con una interfaz donde se le pregunta como si fuera una persona. En dos meses alcanzó 100 millones de usuarios, más rápido que cualquier tecnología anterior en la historia.</p>
+<div class="card">
+<p><b>Esta es la lección más importante de toda la materia:</b> en noviembre de 2022 <b>no mejoró el archivista</b>. Atlas ya existía, con las mismas capacidades, desde 2021. Lo que cambió fue que le pusieron un mostrador al que la gente podía acercarse.</p>
+<p>Cuando alguien diga «la IA llegó en 2022», no está diciendo que la tecnología nació ese año. Está diciendo que ese año la tecnología <b>se hizo accesible</b>. Y esa es la razón de que tu tarea no sea aprender a usar IA, sino <b>aprender a verificar lo que la IA te da</b>.</p>
+</div>
+
+<h3>2.8 2023-2025: Atlas deja de contestar y empieza a hacer</h3>
+<p>Aquí la analogía se vuelve literal, y conecta con lo que se usa en las sesiones del curso.</p>
+<ul>
+<li><b>RAG (2023):</b> le entregas una carpeta con tus documentos y Atlas <b>los consulta antes de responder</b>, en vez de improvisar. Esto reduce muchísimo los inventos. Ojo con un detalle: Atlas <b>no guarda</b> tus documentos para siempre; los vuelve a consultar cada vez que le preguntas.</li>
+<li><b>Multimodalidad (2023-2025):</b> Atlas ya no solo lee texto. Ahora también <b>mira imágenes, escucha audio y entiende video</b>.</li>
+<li><b>Modelos abiertos (2024):</b> Meta libera Llama; Mistral, Qwen y DeepSeek compiten. Atlas se vuelve reproducible: puedes tener una copia corriendo en tu propio equipo.</li>
+<li><b>Herramientas y agentes (2024-2025):</b> el cambio grande. Atlas deja de solo <i>hablar del</i> documento: <b>abre</b> el documento, <b>modifica</b> el archivo, <b>ejecuta</b> el comando en la terminal, <b>verifica</b> si salió bien. Esta es exactamente la diferencia entre un chat y un <b>agente</b> como OpenCode, que edita código y corre pruebas.</li>
+<li><b>Modelos con razonamiento (2024-2025):</b> una familia nueva que <b>escribe su propio borrador de razonamiento</b> antes de dar la respuesta final, como cuando uno piensa «en papel» antes de contestar. Mejora en lógica, matemáticas y código, a costa de más tiempo y más consumo.</li>
+<li><b>Costo decreciente:</b> lo que en 2021 costaba cientos de dólares por millón de palabras hoy cuesta centavos. Por eso la IA generativa está metida en todas partes: en el celular, en el correo, en los buscadores.</li>
+</ul>
+
+<h3>2.9 2026: de archivista a ayudante de taller</h3>
+<p>Tres líneas de fuerza definen la etapa actual:</p>
+<ol>
+<li><b>De responder a hacer.</b> El modelo ya opera herramientas y coordina varios pasos.</li>
+<li><b>Del texto a todo.</b> Imagen, voz, video, código y datos estructurados, con el mismo motor detrás.</li>
+<li><b>Local y privado.</b> Modelos pequeños que corren en tu equipo, sin que nada salga de tu máquina.</li>
+</ol>
+
+<h2>3. La falla más importante: la alucinación</h2>
+<p>Volvamos a la biblioteca, porque ahí está la explicación completa.</p>
+<p>Atlas <b>no consulta un catálogo</b>. Reproduce el molde. Por eso, si le pides un dato que no conoce, <b>no responde «no lo sé»</b>: lo inventa, y lo inventa con la forma correcta.</p>
+<p>Lo que sale de ahí se llama <b>alucinación</b>, y son cuatro cosas distintas que se confunden todo el tiempo:</p>
+<table>
+<thead><tr><th>Lo que el modelo inventa</th><th>Ejemplo típico</th></tr></thead>
+<tbody>
+<tr><td><b>Un dato falso</b></td><td>«El estudio de la Universidad de X encontró que el 73% de los usuarios prefiere Y».</td></tr>
+<tr><td><b>Una fuente que no existe</b></td><td>Un artículo de revista, un libro, un enlace.</td></tr>
+<tr><td><b>Una cita atribuida a alguien real</b></td><td>«Como dijo Feynman en su libro <i>Talento</i>» (ese libro no existe).</td></tr>
+<tr><td><b>Un detalle verosímil pero cambiado</b></td><td>Un número de ley, una fecha, un nombre propio.</td></tr>
+</tbody>
+</table>
+<div class="card">
+<p><b>El punto que debes llevarte:</b></p>
+<p>El riesgo no es que Atlas «sea malo» ni que «quiera engañarte». El riesgo es que <b>Atlas no sabe lo que no sabe</b>.</p>
+<p>Y de ahí se deriva la regla de oro:</p>
+<p><b>Si una respuesta de IA contiene un dato que se puede verificar (fecha, cifra, nombre, cita, ley), ese dato se verifica en la fuente antes de publicarlo.</b></p>
+<p>Da igual si la respuesta está bien redactada, si el tono es convincente, si «suena a experto» o si viene con ejemplos. <b>El tono no es evidencia. La forma no es evidencia. Solo la fuente lo es.</b></p>
+</div>
+
+<h2>4. Cómo funciona por dentro, en cinco pasos</h2>
+<p>Sin fórmulas, para entender la secuencia cuando alguien te lo pregunte.</p>
+<ol>
+<li><b>Lo que escribes se corta en fichas</b> (tokens). «Hola» puede ser una ficha; «programación» puede ser tres.</li>
+<li><b>Cada ficha se convierte en una lista de números</b> que representa su significado en contexto. Palabras parecidas contextualmente terminan con números parecidos.</li>
+<li><b>El modelo calcula qué viene después.</b> Aquí está el corazón: dada toda la conversación hasta ahora, estima con qué probabilidad la siguiente ficha es X, o Y, o Z.</li>
+<li><b>Elige una</b> (la de mayor probabilidad, o una de las que casi empatan, para que no siempre suene igual) y la escribe.</li>
+<li><b>Repite desde el punto 3</b>, ahora incluyendo la ficha que acaba de escribir.</li>
+</ol>
+<p>De ahí se entiende todo lo demás:</p>
+<ul>
+<li><b>Por qué alucina:</b> en el punto 3, una frase inventada puede tener <i>más</i> probabilidad que la verdadera, porque es la forma más «normal» según lo que leyó. El modelo no tiene un interruptor de «esto no lo sé».</li>
+<li><b>Por qué escribe igual que un libro:</b> no está «recordando» un texto, está reproduciendo el molde de la prosa.</li>
+<li><b>Por qué el contexto se llena:</b> todo lo que hay en la conversación (tus preguntas, las respuestas, los archivos cargados) se guarda como fichas en una memoria de trabajo con límite. Si se llena, el modelo tiene que comprimir lo viejo, y ahí pierde detalle.</li>
+</ul>
+<p><b>Sobre eso, una analogía:</b> es como una mesa de trabajo. Si está llena con 200 hojas y tratas de dibujar algo en una esquina, el resultado sale peor. Vaciar la mesa (empezar una conversación nueva) es barato y funciona.</p>
+
+<h2>5. Tres cosas que la IA generativa NO es</h2>
+<p>Este apartado evita errores muy comunes.</p>
+<p><b>No es una base de datos con respuestas guardadas.</b> Si le preguntas algo y te da una respuesta, no te está «consultando». Salió de un cálculo, no de una búsqueda. Por eso puede darte datos que suenan perfectos y son inventados, y también por eso puede darte la respuesta correcta con palabras diferentes a las que usaría un libro.</p>
+<p><b>No entiende lo que dice.</b> No tiene intención, no quiere ayudarte, no se alegra de que acertaras. «Entender» aquí significa que los números internos de la red quedaron organizados de forma que ese tema produce resultados coherentes. Es una metáfora útil, no una descripción literal.</p>
+<p><b>No siempre da lo mismo.</b> Un mismo prompt puede dar respuestas distintas porque en el paso 4 hay un componente aleatorio. Por eso las tareas de IA generativa se evalúan con una rúbrica, no con una respuesta única correcta.</p>
+
+<h2>6. Línea de tiempo</h2>
+<pre>1990-2013  ▸ La IA clasifica: reconoce gatos, spam, rostros.
+            No crea nada.
+
+2014       ▸ GAN: el Falsificador vs el Perito. Nace la
+            generación de imágenes, música y texto.
+
+2017       ▸ Transformer + atención: el salto de estante.
+            Base de todos los modelos actuales.
+
+2018-2020  ▸ Escala: GPT-1, GPT-2, GPT-3 (175 mil millones).
+            "Más grande" produce habilidades nuevas.
+
+2021-2022  ▸ Modelos de difusión: del ruido al dibujo.
+            DALL-E, Midjourney, Stable Diffusion.
+
+nov 2022   ▸ ChatGPT: 100 millones de usuarios en 2 meses.
+            No cambió la tecnología; cambió la accesibilidad.
+
+2023       ▸ RAG: la IA consulta tus documentos antes de
+            responder. Empieza a ver y oír.
+
+2024-2025  ▸ Agentes: deja de contestar y empieza a hacer.
+            Modelos con razonamiento y modelos abiertos.
+
+2026       ▸ De responder a hacer. Local y privado.
+            El costo por palabra cae a centavos.</pre>
+<table>
+<thead><tr><th>Año</th><th>Hito</th><th>Qué cambió en concreto</th><th>Por qué importa</th></tr></thead>
+<tbody>
+<tr><td>2014</td><td><b>GAN</b></td><td>Dos redes compiten: una falsifica, otra juzga</td><td>Nace la generación de contenido real</td></tr>
+<tr><td>2017</td><td><b>Transformer</b></td><td>La red salta a lo relevante en vez de leer en orden</td><td>Permite escalar; base de todo lo actual</td></tr>
+<tr><td>2020</td><td><b>GPT-3</b></td><td>175 mil millones de parámetros</td><td>Se descubre que la escala genera habilidades nuevas</td></tr>
+<tr><td>2022</td><td><b>ChatGPT</b></td><td>Interfaz de conversación sobre un modelo que ya existía</td><td>La demanda pública se dispara</td></tr>
+<tr><td>2023</td><td><b>RAG</b></td><td>Consulta fuentes antes de responder</td><td>Menos inventos; base de los asistentes con documentos</td></tr>
+<tr><td>2024-2025</td><td><b>Agentes</b></td><td>Usa herramientas: lee, edita, ejecuta</td><td>Pasa de asesor a ejecutor</td></tr>
+<tr><td>2025-2026</td><td><b>Modelos abiertos y locales</b></td><td>Corren en el propio computador, costo bajo</td><td>Se democratiza y se privatiza</td></tr>
+</tbody>
+</table>
+<div class="card">
+<p><b>Idea para la lámina:</b> dibuja una línea divisoria en <b>noviembre de 2022</b>. A la izquierda, «el laboratorio». A la derecha, «la vida cotidiana». Es el corte que la audiencia recuerda, y es la idea que hay que trasmitir.</p>
+</div>
+
+<h2>7. Taller (45 minutos)</h2>
+<p><b>Producto final esperado:</b> un documento de <b>una página</b> (foto o PDF) que contenga: (a) la línea de tiempo con <b>cuatro hitos</b> y qué cambió en cada uno, (b) <b>una analogía propia</b> para explicar la IA generativa, y (c) <b>un ejemplo real</b> de una respuesta de IA que se haya verificado o que haya parecido dudosa.</p>
+
+<h3>7.1 Paso a paso</h3>
+<p><b>Minutos 0-10 — La línea de tiempo en equipo (30%)</b></p>
+<ol>
+<li>Dividan la línea de tiempo de la sección 6 en cuatro momentos: <b>2014, 2017, 2022, 2024-2025</b>.</li>
+<li>Escriban, para cada momento, una frase con este formato: «En este año pasó _____, y sirvió para _____.»</li>
+<li>Cuiden que la segunda parte sea una <b>utilidad concreta</b>, no una descripción.</li>
+</ol>
+<p><b>Minutos 10-20 — Su propia analogía (30%)</b></p>
+<ol start="4">
+<li>Inventen una analogía para explicar qué es un modelo de IA generativa, usando algo de su vida cotidiana: un oficio, un juego, un lugar.</li>
+<li>Su analogía debe poder responder estas tres preguntas:
+<ul>
+<li>¿Qué aprende la máquina y qué NO aprende?</li>
+<li>¿Por qué puede equivocarse sin darse cuenta?</li>
+<li>¿Qué cambió en noviembre de 2022?</li>
+</ul>
+</li>
+<li>Si su analogía no responde las tres, está incompleta. Ajústenla.</li>
+</ol>
+<p><b>Minutos 20-35 — Cazando una alucinación (45%)</b></p>
+<ol start="7">
+<li>Escriban un <b>prompt</b> (una instrucción) para pedirle a un modelo de IA generativa un dato verificable sobre un tema cualquiera: por ejemplo, un dato sobre un autor, una fecha histórica, un porcentaje de un estudio o la dirección de una institución.</li>
+<li>Copien <b>exactamente</b> lo que respondió.</li>
+<li>Busquen la fuente real (sitio oficial, bibliografía, artículo original).</li>
+<li>Escriban esta tabla:</li>
+</ol>
+<table>
+<thead><tr><th>Dato que dio la IA</th><th>¿Verdadero o falso?</th><th>Fuente donde lo comprobaron</th></tr></thead>
+<tbody><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody>
+</table>
+<ol start="11">
+<li>Saquen una conclusión de <b>una frase</b> sobre por qué ese dato era difícil de detectar.</li>
+</ol>
+<p><b>Minutos 35-45 — Armando el entregable (20%)</b></p>
+<ol start="12">
+<li>Organicen la página final con las tres partes: línea de tiempo, analogía propia y caso de alucinación.</li>
+<li>Escriban al final, en una línea, <b>su regla de oro</b> para trabajar con IA generativa.</li>
+<li>Entreguen la página.</li>
+</ol>
+
+<h3>7.2 Materiales</h3>
+<ul>
+<li>Un dispositivo con navegador (puede ser uno por equipo de tres personas).</li>
+<li>Acceso a cualquier modelo de IA generativa gratuito en línea.</li>
+<li>Cuaderno o documento digital.</li>
+<li>Este material (secciones 1, 3 y 6).</li>
+</ul>
+
+<h3>7.3 Criterios de evaluación</h3>
+<table>
+<thead><tr><th>Criterio</th><th>Sí</th><th>No</th></tr></thead>
+<tbody>
+<tr><td>La línea de tiempo incluye los cuatro hitos con su año</td><td>2014, 2017, 2022, 2024-2025, cada uno con su año</td><td>Faltan hitos o los años están mal</td></tr>
+<tr><td>Cada hito explica una utilidad concreta</td><td>Dice para qué sirvió, no solo qué pasó</td><td>Solo describe («en 2017 inventaron el Transformer»)</td></tr>
+<tr><td>La analogía responde las tres preguntas</td><td>Explica qué aprende, por qué se equivoca y qué cambió en 2022</td><td>Responde solo una o dos</td></tr>
+<tr><td>El caso de alucinación está verificado con fuente</td><td>Incluye la fuente donde se comprobó el dato</td><td>Afirma sí o no sin fuente</td></tr>
+<tr><td>Concluye con una regla de uso verificable</td><td>Regla aplicable, tipo «todo dato con cifra o nombre se comprueba»</td><td>Frase genérica («hay que tener cuidado»)</td></tr>
+</tbody>
+</table>
+
+<details><summary>👩‍🏫 Para el docente: qué mirar al calificar</summary>
+<p>La <b>analogía es la evidencia de comprensión</b>. Si el equipo logra explicar por qué el modelo se equivoca <i>sin dar la espalda</i>, entendieron el material. Si solo repiten «porque la IA alucina», no lo entendieron: eso es memorizar el síntoma, no la causa.</p>
+<p>Un <b>caso donde la IA acertó también vale</b>, siempre que se verifique la fuente. El objetivo no es «pescar errores», es el hábito de verificar.</p>
+<p>Si eligen un dato que no se puede verificar en internet, pídanles que lo cambien por uno verificable (una cifra de un estudio publicado, la fecha de publicación de un libro).</p>
+<p>La <b>regla de oro final</b> es el mejor indicador: si dice algo aplicable y concreto, la sesión funcionó. Si dice «cuidado con la IA», pídanles una versión más específica.</p>
+</details>
+
+<h2>8. Preguntas de verificación</h2>
+<p><i>Para autoevaluación del estudiante o para el banco de preguntas del curso.</i></p>
+<ol>
+<li>¿Por qué se dice que ChatGPT no fue un invento técnico en 2022?</li>
+<li>¿Qué problema resolvió el invento de 2017 y por qué hizo posible todo lo que vino después?</li>
+<li>Explica, sin usar la palabra «alucinación», por qué un modelo puede dar un dato falso con tono seguro.</li>
+<li>¿Qué diferencia hay entre «consultar una fuente» y «producir una respuesta»? ¿Por qué importa al evaluar una IA?</li>
+<li>Un modelo responde: «Según un estudio de la Universidad de Cambridge de 2019, el 82% de los estudiantes mejora su aprendizaje con herramientas de IA.» ¿Qué haces y por qué?</li>
+<li>¿Por qué una conversación larga puede hacer que el modelo dé respuestas peores?</li>
+</ol>
+<details><summary>✅ Respuestas (abre cuando ya hayas respondido)</summary>
+<ol>
+<li>La tecnología existía desde 2021; en 2022 se puso una interfaz de conversación.</li>
+<li>La lectura secuencial era lentísima; la atención permite saltar a lo relevante, y eso hace posible el entrenamiento a gran escala.</li>
+<li>Porque el modelo reproduce el molde de lo que leyó en vez de buscar un dato, y no tiene forma de detectar que no lo sabe.</li>
+<li>Consultar es buscar en una fuente real; producir es calcular una respuesta plausible. En lo segundo, el tono no dice nada sobre la veracidad.</li>
+<li>Buscar el estudio, verificar que existe, que es de esa universidad y de ese año, y que el 82% corresponde a lo que dice. Si algo no cuadra, se descarta.</li>
+<li>Porque todo el contexto se guarda en fichas dentro de una memoria con límite; al llenarse, se comprime lo viejo y se pierde detalle.</li>
+</ol>
+</details>
+
+<h2>9. Glosario de este material</h2>
+<table>
+<thead><tr><th>Término</th><th>Significado en palabras sencillas</th></tr></thead>
+<tbody>
+<tr><td><b>Modelo</b></td><td>Archivo con números que guardan lo aprendido de millones de ejemplos</td></tr>
+<tr><td><b>Parámetro</b></td><td>Cada uno de esos números (175 mil millones en GPT-3)</td></tr>
+<tr><td><b>Entrenamiento</b></td><td>El proceso de ajustar esos números; tarda meses</td></tr>
+<tr><td><b>Token</b></td><td>Pedacito de texto (una palabra o parte de ella) en el que se corta lo que escribes</td></tr>
+<tr><td><b>Atención</b></td><td>La capacidad de saltar directo a la parte relevante del texto sin recorrerlo todo</td></tr>
+<tr><td><b>Transformer</b></td><td>La arquitectura (el diseño) que usa la atención; base de todos los modelos actuales</td></tr>
+<tr><td><b>GAN</b></td><td>Duelo entre una red que falsifica y otra que juzga; origen de la generación de imágenes</td></tr>
+<tr><td><b>Difusión</b></td><td>Técnica de dibujo: partir del ruido y quitarle niebla hasta que aparece la imagen</td></tr>
+<tr><td><b>RAG</b></td><td>Consultar documentos antes de responder, en vez de improvisar</td></tr>
+<tr><td><b>Alucinación</b></td><td>Dato falso con el formato exacto de un dato verdadero</td></tr>
+<tr><td><b>Código abierto</b></td><td>Programa libre que cualquiera puede copiar, modificar y usar</td></tr>
+<tr><td><b>Agente</b></td><td>Modelo que además usa herramientas: lee archivos, ejecuta comandos, verifica resultados</td></tr>
+<tr><td><b>Modelo multimodal</b></td><td>Modelo que no solo lee texto: también ve imágenes, escucha audio y entiende video</td></tr>
+<tr><td><b>Modelo con razonamiento</b></td><td>Modelo que escribe su propio borrador de razonamiento antes de dar la respuesta final</td></tr>
+</tbody>
+</table>
+
+<h2>10. Para profundizar</h2>
+<ul>
+<li><b>Video sugerido:</b> el documento «Attention Is All You Need» explicado en video (búscalo en YouTube; hay versiones de 10 a 15 minutos muy claras, en español).</li>
+<li><b>Guía del curso:</b> <code>recursos/Guia-de-Modelos-de-IA-2026-La-comparativa-definitiva-Curso-de-Desarrollo-con-IA.pdf</code> — complementaria a este material: el <b>qué</b> hay hoy (modelos, costos, capacidades); este documento es el <b>por qué y desde cuándo</b>.</li>
+<li><b>Para practicar la verificación:</b> la web <i>Lateral</i>, de Richard Stallman, y los sitios de verificación de datos <i>Full Fact</i> y <i>Reuters Fact Check</i>, donde se muestra cómo se comprueba una cifra.</li>
+</ul>
+
+<h2>11. Referencias internas</h2>
+<ul>
+<li><b>Día 1</b> — <a href="leccion1.html">Fundamentos de la IA y Prompt Engineering</a>: qué es un LLM, tokens, parámetros, alucinaciones, prompt engineering.</li>
+<li><b>Día 2</b> — <a href="leccion2.html">Harness y SDD</a>: comandos personalizados, Agent Skills, MCP, SDD.</li>
+<li><b>Día 3</b> — <a href="leccion3.html">Multiagentes</a>: agentes, subagentes, sistemas multiagentes.</li>
+<li><b>Evaluación</b> — banco de preguntas por día y rúbrica por competencias, en el repositorio del curso.</li>
+<li><b>Glosario</b> — <a href="https://github.com/wcarlosceballos/curso-desarrollo-ia/blob/main/recursos/glosario.md">glosario de términos técnicos</a>.</li>
+</ul>
+
+<div class="card">
+<p><b>Cómo se actualiza este material.</b> La fuente editable en Markdown es <code>recursos/historia-ia-generativa.md</code> en el repositorio del curso. Como el sitio se arma a mano (no hay proceso de compilación), <b>si editas el archivo Markdown, actualiza también esta página</b> o quedará desactualizada.</p>
+</div>
+
+<p>
+<a class="btn" href="leccion1.html">⬅️ Volver al Día 1</a>
+<a class="btn" href="index.html">🏠 Inicio</a>
+</p>
+
+</main>
+<button class="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆️</button>
+<footer>OVA educativo — Carlos Ceballos · 2026</footer></div>
+<script src="js/storage.js"></script>
+</body></html>
